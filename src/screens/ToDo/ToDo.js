@@ -121,10 +121,14 @@ class TodoList extends Component {
               renderItem={({item, index}) =>
                   <TouchableOpacity onPress={() => this.loadAddCommentScreen(item)}>
                     <View style={styles.listItemCont}>
+                      <View style={styles.textWrap}>
                       <Text numberOfLines={1} ellipsizeMode='tail' style={styles.listItem}>
                         {item.text}
                       </Text>
+                      </View>
+                      <View style={styles.btnWrap}>
                       <Button title="X" onPress={() => this.deleteTask(index)}/>
+                      </View>
                     </View>
                   </TouchableOpacity>}
           />
@@ -149,11 +153,7 @@ let mapStateToProps = state => {
     state: state
   }
 };
-/*let mapDispatchToProps = (dispatch) => {
-  return {
-    updateUserData: (userData) => dispatch(actionCreators.updateUserData(userData))
-  }
-};*/
+
 export default connect(mapStateToProps)(TodoList)
 
 const styles = StyleSheet.create({
@@ -181,6 +181,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
+  },
+  textWrap:{
+    width:"90%"
+  },
+  btnWrap:{
+    flex: 1,
+    width:30
   },
   textInput: {
     height: 40,
