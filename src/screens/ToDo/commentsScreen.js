@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Text, TextInput, TouchableOpacity} from "react-native";
-import themeConstants from "../../theme";
-import isEqual from "lodash/isEqual";
-import {connect} from "react-redux"
-import * as actionCreators from "../../store/actions";
+import {connect} from "react-redux";
 import isEmpty from "lodash/isEmpty";
-import store from "../../store/createStore/createStore"
+
+import themeConstants from "../../theme";
+import * as actionCreators from "../../store/actions";
+import store from "../../store/createStore/createStore";
 
 class CommentsScreen extends Component {
   state = {
@@ -23,18 +23,18 @@ class CommentsScreen extends Component {
     };
   }
 
-
   changeTextHandler = (text) => {
     this.setState({comment: text});
   };
+
   addComment = () => {
     if (this.props.state.toDo) {
-      if (this.props.state.toDo.length>0){
-        let tasks = !isEmpty(this.props.state.toDo)?this.props.state.toDo:[];
+      if (this.props.state.toDo.length > 0) {
+        let tasks = !isEmpty(this.props.state.toDo) ? this.props.state.toDo : [];
 
         console.log("add comment", tasks)
         let filteredTask = tasks.find(item => item.key === this.props.item.key);
-        let commentArray = [{key:filteredTask.comments.length, text:this.state.comment}];
+        let commentArray = [{key: filteredTask.comments.length, text: this.state.comment}];
         filteredTask.comments = [...filteredTask.comments, ...commentArray];
         let newTasks = tasks.map((item) => {
           if (item.key === this.props.item.key) {
@@ -75,7 +75,7 @@ class CommentsScreen extends Component {
 
   render() {
     let state = this.props.state;
-    console.log("state comment",state)
+    console.log("state comment", state)
     return (
         <View style={styles.container}>
           <View style={styles.toDo}>
@@ -113,7 +113,7 @@ class CommentsScreen extends Component {
 let mapStateToProps = (state) => {
   return {
     state: state,
-    toDo : state.toDo
+    toDo: state.toDo
   }
 };
 
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold"
   },
-  comments:{
+  comments: {
     padding: 5,
     marginLeft: 10,
     marginRight: 10,

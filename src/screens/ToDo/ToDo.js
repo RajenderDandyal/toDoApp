@@ -12,15 +12,16 @@ import {
   TouchableOpacity,
   AppState
 } from "react-native";
-import {connect} from "react-redux"
+import {connect} from "react-redux";
+import PushNotification from 'react-native-push-notification';
+
 import themeConstants from "../../theme";
 import NavigateUser from "../../utils/navigationFunction";
 import {componentIds, screenNames} from "../index";
 import * as actionCreators from "../../store/actions";
-import isEqual from "lodash/isEqual";
 import isEmpty from "lodash/isEmpty";
 import LocalPushNotifications from "../../PushNotifications/LocalPushNotifications";
-import PushNotification from 'react-native-push-notification';
+
 
 const isAndroid = Platform.OS === "android";
 const viewPadding = 10;
@@ -28,7 +29,7 @@ const viewPadding = 10;
 class TodoList extends Component {
   state = {
     text: "",
-    time: 5*1000
+    time: 5 * 1000
   };
 
   static options() {
@@ -91,7 +92,7 @@ class TodoList extends Component {
   }
 
   handleAppStateChange = (appState) => {
-    if (this.props.state.toDo.length){
+    if (this.props.state.toDo.length) {
       if (appState === 'background') {
         let date = new Date(Date.now() + (this.state.time));
 
@@ -117,17 +118,17 @@ class TodoList extends Component {
           <FlatList
               style={styles.list}
               data={this.props.state.toDo}
-              keyExtractor={(item) => `${item.text.toString()}`}
+              keyExtractor={(item) => `${item.text.toString() + Math.random()}`}
               renderItem={({item, index}) =>
                   <TouchableOpacity onPress={() => this.loadAddCommentScreen(item)}>
                     <View style={styles.listItemCont}>
                       <View style={styles.textWrap}>
-                      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.listItem}>
-                        {item.text}
-                      </Text>
+                        <Text numberOfLines={1} ellipsizeMode='tail' style={styles.listItem}>
+                          {item.text}
+                        </Text>
                       </View>
                       <View style={styles.btnWrap}>
-                      <Button title="X" onPress={() => this.deleteTask(index)}/>
+                        <Button title="X" onPress={() => this.deleteTask(index)}/>
                       </View>
                     </View>
                   </TouchableOpacity>}
@@ -182,12 +183,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between"
   },
-  textWrap:{
-    width:"90%"
+  textWrap: {
+    width: "90%"
   },
-  btnWrap:{
+  btnWrap: {
     flex: 1,
-    width:30
+    width: 30
   },
   textInput: {
     height: 40,

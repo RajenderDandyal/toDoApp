@@ -1,16 +1,16 @@
 import {Navigation} from "react-native-navigation";
+import React from "react";
+import {Platform, ActivityIndicator} from "react-native";
+import {PersistGate} from 'redux-persist/integration/react'
+import {Provider} from "react-redux";
 
 import themeConstants from "./src/theme";
 import {componentIds, screenNames} from "./src/screens";
-import {PersistGate} from 'redux-persist/integration/react'
 import TodoList from "./src/screens/ToDo/ToDo";
 import CommentsScreen from "./src/screens/ToDo/commentsScreen";
 import {persistStore} from "redux-persist";
-import {Provider} from "react-redux";
 import store from "./src/store/createStore/createStore";
-import React from "react";
-import {AsyncStorage} from "react-native";
-import {Platform, ActivityIndicator} from "react-native";
+
 
 
 //let persistor = persistStore(store().store)
