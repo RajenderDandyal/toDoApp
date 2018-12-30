@@ -3,11 +3,12 @@ package com.todoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
@@ -37,8 +38,8 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-    // eg. new VectorIconsPackage()
-    );
+        // eg. new VectorIconsPackage()
+        new ReactNativePushNotificationPackage());
   }
 
   @Override
